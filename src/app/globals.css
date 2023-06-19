@@ -2,26 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+.background{
+  background: radial-gradient(#f0e6e7, #f7f7f7);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+input{
+  @apply px-4 py-3 rounded-full border border-black bg-transparent 
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+input::placeholder{
+  color: #464545
+}
+
+.inputdiv{
+  @apply mt-5
+}
+
+label{
+  @apply mb-2 text-gray-600 
+}
+
+label{
+  font-weight: 700;
+}
+
+.login{
+  @apply font-semibold text-gray-500 hover:underline
+}
+
+.logo h1{
+  font-family:cursive;
+  font-size: 20px;
 }
