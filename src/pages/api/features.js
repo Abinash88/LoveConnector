@@ -8,3 +8,4 @@ export const MongoDb = async() => {
     })
     console.log('Connected to Database');
 }
+
