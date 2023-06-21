@@ -11,6 +11,7 @@ import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import Loader from '@/components/Loader'
 import { uuid } from 'uuidv4';
+import Cookies from 'js-cookie';
 let loader = false;
 
 export default function page() {
@@ -19,7 +20,8 @@ export default function page() {
   const [CrushName, SetCrushName] = useState("");
   const [Message, SetMessage] = useState("");
   const [showDetails, setShowDetails] = useState(false);
-  const userId = localStorage.getItem('userId')
+
+  const userId = Cookies.get('userId');
 
   const FetchUserData = async (e) => {
     e.preventDefault();
@@ -55,7 +57,7 @@ export default function page() {
       SetCrushName('');
       SetMessage('');
       const userId = uuid();
-      localStorage.setItem('userId', userId);
+      Cookies.set('userId', userId, { expires: 7 })
     } catch (err) {
       console.log(err.message);
       loader = false
@@ -66,12 +68,18 @@ export default function page() {
     alert(`Keep in mind that you can only provide your details once in the following fields. Please make sure to write your name exactly as it appears on Facebook.`)
   }, []);
 
+  // const getcookie = () => {
+  //   const data = Cookies.remove('userId');
+  //   console.log(data);
+  // }
+
   return (
     <>
       <main className="flex min-h-screen background flex-col items-center justify p-5">
+        {/* <button onClick={getcookie}>click</button> */}
         <button onClick={() => setShowDetails(!showDetails)} className='text-white p-2 font-semibold underline cursor-pointer'>More Info </button>
-        <div className={`absolute ${!showDetails ? 'h-[0px] overflow-hidden' : 'h-[400px]'} md:w-[500px] w-[90%]  rounded-md top-[55px] m-auto bg-gray-100 z-10 `}>
-          <h2 className='p-2 text-gray-600 text-[22px] text-center underline'>About App</h2>
+        <div className={`absolute ${!showDetails ? 'h-[0px] overflow-hidden' : 'h-[400px]'} md:w-[500px]  w-[90%]  rounded-md top-[55px] m-auto bg-gray-100 z-10 `}>
+          <h2 className='p-2  text-gray-600 text-[22px] text-center underline'>About App</h2>
           <p className='p-3 text-gray-500 '>Hi, this is creator of this app. I have created this app to help you find the perfect couple for yourself. Please copy-paste or enter your and your loved one's Facebook 'Name' exactly as it appears on Facebook (including case sensitivity) in the form provided. Once you have filled in the form with both names, please share the app link with other people so they can help you reach your loved one.
 
             If both of you enter each other's names correctly, you will receive a notification via email, which you have provided. Please note that you can only fill out the form once, so make sure to provide the following credentials accurately.</p>
@@ -82,13 +90,13 @@ export default function page() {
               loader ? <Loader /> : null
             }
           </div>
-          <h1 className="text-center rounded-lg   bg-gray-700 flex  items-center justify-center text-[25px] md:text-[40px] font-bold text-gray-100 mb-2">
+          <h1 className="text-center rounded-lg  heading  flex  items-center justify-center text-[25px] md:text-[40px] font-bold text-gray-100 mb-2">
             <span>Love Connector</span> <HeartIcon className="md:h-10 h-8 pt-1 text-pink-600" />
           </h1>
           <p className="text-center md:text-[16px] text-[15px] text-gray-100 mb-3">
             Fill the following details as written in below with Case sensetive
           </p>
-          <div className="md:w-[650px] w-full   p-4 h-[500px] bg--200 rounded-md">
+          <div className="md:w-[600px] w-full   p-4 h-[500px] bg--200 rounded-md">
             <form onSubmit={FetchUserData} className="w-full">
               <div className="flex flex-col inputdiv  ">
                 <label className="text-bold flex" htmlFor="Name">
