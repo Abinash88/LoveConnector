@@ -4,15 +4,28 @@
 
 
 .background{
-  background: radial-gradient(#f0e6e7, #f7f7f7);
+  background: radial-gradient(#6b66668c, #5e585883), url('../../public/moon.jpg');
+  background-position:center;
+  background-size:cover;
+
+
+}
+
+.mybox{
+  background:rgba(255, 255, 255, 0.176);
+  backdrop-filter: blur(10px); 
 }
 
 input{
-  @apply px-4 py-3 rounded-full border border-black bg-transparent w-full 
+  @apply px-4 md:py-3 py-2 rounded-full border text-white border-white bg-transparent w-full 
+}
+
+input:focus{
+  outline:none;
 }
 
 input::placeholder{
-  color: #464545
+  color: #e7e7e7
 }
 
 .inputdiv{
@@ -20,7 +33,7 @@ input::placeholder{
 }
 
 label{
-  @apply mb-2 text-gray-600 
+  @apply mb-2 text-gray-100 text-[14px] md:text-[16px]
 }
 
 label{

@@ -9,11 +9,19 @@ const Mail = async (
   crushName
 ) => {
   const emailContent = () => {
-    return `<div>
-      <h2><b>${userName}</b> <i>loves</i>  <b>${crushName}</b> </h2>
-      <h5><b>${userName} Message:</b> ${userMsg}</h5>
-      <h5><b>${crushName} Message:</b> ${crushMsg}</h5>
-    </div>`
+    return `
+    <html>
+      <head>
+      </head>
+        <body>
+          <div>
+          <h2><b>${userName}</b> <i style='color:'red';font-size:'20px'>+</span>  <b>${crushName}</b> </h2>
+          <h3><b>${userName} Message:</b> ${userMsg}</h3>
+          <h3><b>${crushName} Message:</b> ${crushMsg}</h3>
+          </div>
+        </body>
+    </html>
+    `;
   };
 
   const transporter = nodemailer.createTransport({
