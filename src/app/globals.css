@@ -4,11 +4,10 @@
 
 
 .background{
-  background: radial-gradient(#6b66668c, #5e585883), url('../../public/moon.jpg');
+  background:url('../../public/moon.jpg');
   background-position:center;
   background-size:cover;
-
-
+  backdrop-filter: blur(20px); 
 }
 
 .mybox{
@@ -25,6 +24,12 @@ input{
   @apply px-4 md:py-3 py-2 rounded-full border text-white border-white bg-transparent w-full 
 }
 
+input{
+  background-color: #44444438;
+  backdrop-filter: blur(10px); 
+  box-shadow: 2px 2px 10px #b1b1b1;
+}
+
 input:focus{
   outline:none;
 }
@@ -38,7 +43,7 @@ input::placeholder{
 }
 
 label{
-  @apply mb-2 text-gray-100 text-[13.5px] md:text-[16px] 
+  @apply mb-2 text-white text-[13.5px] md:text-[16px] 
 }
 
 label{
