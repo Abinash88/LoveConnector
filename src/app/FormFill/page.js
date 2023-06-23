@@ -10,7 +10,7 @@ import {
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import Loader from '@/components/Loader'
-import { uuid } from 'uuidv4';
+import {v4 as uuidv4} from 'uuid';
 import Cookies from 'js-cookie';
 let loader = false;
 
@@ -20,7 +20,7 @@ export default function page() {
   const [CrushName, SetCrushName] = useState("");
   const [Message, SetMessage] = useState("");
   const [showDetails, setShowDetails] = useState(false);
-
+  
   const userId = Cookies.get('userId');
 
   const FetchUserData = async (e) => {
@@ -56,7 +56,7 @@ export default function page() {
       SetEmail('');
       SetCrushName('');
       SetMessage('');
-      const userId = uuid();
+      const userId = uuidv4();
       Cookies.set('userId', userId, { expires: 7 })
     } catch (err) {
       console.log(err.message);
