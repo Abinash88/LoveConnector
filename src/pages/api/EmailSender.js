@@ -23,37 +23,67 @@ const Mail = async (
     </html>
     `;
   };
-
+  // Abinash Sūb abirajcomp@gmail.com
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: 'yograjsubedi33@gmail.com',
-      pass: 'aficqfnrcgqzrfwf',
+      user: "yograjsubedi33@gmail.com",
+      pass: "aficqfnrcgqzrfwf",
     },
   });
 
-  const firstUser = await transporter.sendMail({
+  await new Promise((resolve, reject) => {
+    // verify connection configuration
+    transporter.verify(function (error, success) {
+        if (error) {
+            console.log(error);
+            reject(error);
+        } else {
+            console.log("Server is ready to take our messages");
+            resolve(success);
+        }
+    });
+});
+
+await new Promise((resolve, reject) => {
+   transporter.sendMail({
     from: `<Loveconnector@gmail.com>`, // sender address
     to: `${userEmail} `, // list of receivers
     subject: "Love accepted", // Subject line
     text: `${userName} + ${crushName}`, // plain text body
     html: emailContent(),
+  }, (err, info) => {
+    if(err) {
+      console.log(err);
+      reject(err);
+    }else{
+      console.log(info);
+      resolve(info);
+    }
   });
-
-  const secUser = await transporter.sendMail({
+})
+  
+await new Promise((resolve, reject) => {
+   transporter.sendMail({
     from: `<Love@connector.com>`, // sender address
     to: `${crushEmail} `, // list of receivers
     subject: "Love accepted", // Subject line
     text: `${userName} + ${crushName}`, // plain text body
     html: emailContent(),
+  },(err, info) => {
+    if(err) {
+      console.error(err);
+      reject(err);
+    }else{
+      console.log(info);
+      resolve(info)
+    }
   });
 
-  // console.log("Message sent: %s", firstUser.messageId, secUser.messageId);
-  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+})
 
-  // Preview only available when sending through an Ethereal account
-  // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(firstUser));
-  res.json(firstUser, secUser);
+ 
+  res.status(200).json({status:'ok'});
 };
 
 export default Mail;

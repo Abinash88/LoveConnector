@@ -15,10 +15,10 @@ const handler = MiddleHandler(async (req, res) => {
   await MongoDb();
 
   const isExist = await User.findOne({ email });
-  const isExistName = await User.findOne({ name });
+  // const isExistName = await User.findOne({ name });
 
   if (isExist) return ErrorHandler(res, 400, "Email Already Exists");
-  if (isExistName) return ErrorHandler(res, 400, "UserName Already Exists");
+  // if (isExistName) return ErrorHandler(res, 400, "UserName Already Exists");
 
   const doesConnect = await User.findOne({ name: crushName, crushName:name });
 
